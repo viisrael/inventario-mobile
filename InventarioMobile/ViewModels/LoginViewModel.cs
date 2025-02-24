@@ -18,6 +18,12 @@ public partial class LoginViewModel: BaseViewModel
         _loginRepository = loginRepository;
     }
 
+
+    [RelayCommand]
+    public async Task GotoSignup() => await Shell.Current.GoToAsync(nameof(SignupPage));
+    
+
+
     [RelayCommand]
     public async Task Login()
     {

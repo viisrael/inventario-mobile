@@ -78,7 +78,12 @@
                         FontSize="Medium"
                         HorizontalOptions="Center"
                         Text="Cadastre-se agora"
-                        TextColor="Black" />
+                        TextColor="Black">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GotoSignupCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </VerticalStackLayout>
             </Border>
         </Grid>
