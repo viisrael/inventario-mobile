@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Maui.Alerts;
+﻿using System.Text;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
+using InventarioMobile.Contracts;
 using InventarioMobile.Models.Request;
 using InventarioMobile.Repositories.Login;
 
@@ -20,6 +22,21 @@ public partial class LoginViewModel: BaseViewModel
     public async Task Login()
     {
         var loginRequest = new LoginRequest(Email, Senha);
+        var contract = new LoginContract(loginRequest);
+
+        if (!contract.IsValid)
+        {
+            var messages = contract.Notifications.Select(n => n.Message);
+            var sb = new StringBuilder();
+
+            foreach (var message in messages)
+                sb.AppendLine($"{message}\n");
+
+            await Shell.Current.DisplayAlert("Atenção", sb.ToString(), "Ok");
+            return;
+
+        }
+
 
         var result = await _loginRepository.LoginAsync(loginRequest);
 
