@@ -16,10 +16,14 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		builder.Services.AddSingleton<MainViewModel>();
+		//-- ViewModels
+		builder.Services.AddTransient<MainViewModel>();
+		builder.Services.AddTransient<LoginViewModel>();
 
-		builder.Services.AddSingleton<MainPage>();
+        //-- Views
+        builder.Services.AddTransient<MainPage>();
 
+        //-- Repositories
         builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 
 		return builder.Build();
