@@ -30,7 +30,7 @@ public partial class LoginViewModel: BaseViewModel
             var sb = new StringBuilder();
 
             foreach (var message in messages)
-                sb.AppendLine($"{message}\n");
+                sb.AppendLine($"{message}");
 
             await Shell.Current.DisplayAlert("Atenção", sb.ToString(), "Ok");
             return;

@@ -69,6 +69,16 @@
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Images\" />
+	</ItemGroup>
+
 	<PropertyGroup Label="MauiAppAccelerator">
 		<wizardVersion>v1.7.4</wizardVersion>
 		<projectType>MVVMToolkit</projectType>
