@@ -5,10 +5,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:InventarioMobile"
     xmlns:views="clr-namespace:InventarioMobile.Views">
+
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage"
         Shell.NavBarIsVisible="False" />
+
+    <FlyoutItem Title="Produtos">
+        <Tab>
+            <ShellContent
+                Title="Produtos"
+                ContentTemplate="{DataTemplate views:ProductsPage}"
+                Route="ProductsPage"
+                Shell.NavBarIsVisible="True" />
+        </Tab>
+    </FlyoutItem>
 
 </Shell>

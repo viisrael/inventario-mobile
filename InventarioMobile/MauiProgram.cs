@@ -1,4 +1,5 @@
 ﻿using InventarioMobile.Repositories.Login;
+using InventarioMobile.Repositories.Product;
 using InventarioMobile.Repositories.Signup;
 
 namespace InventarioMobile;
@@ -21,15 +22,18 @@ public static class MauiProgram
 		builder.Services.AddTransient<MainViewModel>();
 		builder.Services.AddTransient<LoginViewModel>();
 		builder.Services.AddTransient<SignupViewModel>();
+		builder.Services.AddTransient<ProductViewModel>();
 
         //-- Views
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<SignupPage>();
+        builder.Services.AddTransient<ProductsPage>();
 
         //-- Repositories
         builder.Services.AddScoped<ILoginRepository, LoginRepository>();
         builder.Services.AddScoped<ISignupRepository, SignupRepository>();
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 		return builder.Build();
 	}

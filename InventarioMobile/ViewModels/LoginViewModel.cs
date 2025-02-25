@@ -53,5 +53,9 @@ public partial class LoginViewModel: BaseViewModel
 
             return;
         }
+
+        Preferences.Set("token", result.accessToken);
+
+        await Shell.Current.GoToAsync($"//{nameof(ProductsPage)}");
     }
 }
