@@ -6,11 +6,20 @@
     xmlns:local="clr-namespace:InventarioMobile"
     xmlns:views="clr-namespace:InventarioMobile.Views">
 
+    <Shell.BackgroundColor>
+        <StaticResource Key="Primary" />
+    </Shell.BackgroundColor>
+
+    <Shell.TitleColor>
+        <StaticResource Key="White" />
+    </Shell.TitleColor>
+
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage"
         Shell.NavBarIsVisible="False" />
+
 
     <FlyoutItem Title="Produtos">
         <Tab>
@@ -18,7 +27,7 @@
                 Title="Produtos"
                 ContentTemplate="{DataTemplate views:ProductsPage}"
                 Route="ProductsPage"
-                Shell.NavBarIsVisible="True" />
+                Shell.NavBarIsVisible="true" />
         </Tab>
     </FlyoutItem>
 
