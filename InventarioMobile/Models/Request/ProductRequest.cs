@@ -5,17 +5,17 @@ public class ProductRequest
     public string Descricao { get; private set; }
     public int Estoque { get; private set; }
     public string Barcode { get; private set; }
-    public string UnidadeMedidada { get; private set; }
+    public string UnidadeMedida { get; private set; }
     public double Preco { get; private set; }
     public DateTime AtualizadoEm { get; private set; }
 
-    public ProductRequest(string descricao, int estoque, string barcode, string unidadeMedidada, double preco, DateTime atualizadoEm)
+    public ProductRequest(string descricao, int estoque, string barcode, string unidadeMedida, double preco, DateTime atualizadoEm)
     {
         ProductId = Guid.NewGuid();
         Descricao = descricao;
         Estoque = estoque;
         Barcode = barcode;
-        UnidadeMedidada = unidadeMedidada;
+        UnidadeMedida = unidadeMedida;
         Preco = preco;
         AtualizadoEm = atualizadoEm;
     }
