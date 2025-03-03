@@ -9,4 +9,5 @@ public interface IProductRepository
     Task<bool> AddProductAsync(ProductRequest request);
     Task<bool> UpdateProduct(ProductRequest request);
     Task<bool> DeleteProduct(int id);
+    Task<ProductResponse> GetProductByBarCodeAsync(string code);
 }

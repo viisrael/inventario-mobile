@@ -20,7 +20,7 @@ namespace InventarioMobile.Contracts
                 .IsNotNullOrEmpty(request.Barcode, nameof(request.Barcode), "Código de barras não pode ser vazio");
 
             Requires()
-                .IsNotNullOrEmpty(request.UnidadeMedidada, nameof(request.UnidadeMedidada),
+                .IsNotNullOrEmpty(request.UnidadeMedida, nameof(request.UnidadeMedida),
                     "Informe uma unidade de medida");
 
             Requires()

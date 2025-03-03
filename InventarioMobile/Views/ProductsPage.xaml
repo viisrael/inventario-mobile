@@ -62,6 +62,7 @@
             Grid.Row="2"
             Margin="10"
             BackgroundColor="{StaticResource Primary}"
+            Command="{Binding GotoAddProductCommand}"
             FontAttributes="Bold"
             Text="Novo Produto"
             TextColor="White"

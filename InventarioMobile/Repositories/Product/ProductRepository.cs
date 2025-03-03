@@ -39,7 +39,7 @@ public class ProductRepository : IProductRepository
     public async Task<bool> UpdateProduct(ProductRequest request)
     {
         var response = await Constants.API_URL
-            .AppendPathSegment("/products")
+            .AppendPathSegment($"/products/{request.ProductId}")
             .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
             .PutJsonAsync(request);
 
@@ -54,5 +54,15 @@ public class ProductRepository : IProductRepository
             .DeleteAsync();
 
         return response.ResponseMessage.IsSuccessStatusCode;
+    }
+
+    public Task<ProductResponse> GetProductByBarCodeAsync(string code)
+    {
+        var response = Constants.API_URL
+            .AppendPathSegment($"/products/barcode/{code}")
+            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
+            .GetJsonAsync<ProductResponse>();
+
+        return response;
     }
 }

@@ -1,4 +1,5 @@
-﻿using InventarioMobile.Repositories.Login;
+﻿using Camera.MAUI;
+using InventarioMobile.Repositories.Login;
 using InventarioMobile.Repositories.Product;
 using InventarioMobile.Repositories.Signup;
 
@@ -11,6 +12,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseMauiCameraView()
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
@@ -23,12 +25,14 @@ public static class MauiProgram
 		builder.Services.AddTransient<LoginViewModel>();
 		builder.Services.AddTransient<SignupViewModel>();
 		builder.Services.AddTransient<ProductViewModel>();
+		builder.Services.AddTransient<AddProductViewModel>();
 
         //-- Views
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<SignupPage>();
         builder.Services.AddTransient<ProductsPage>();
+        builder.Services.AddTransient<AddProductPage>();
 
         //-- Repositories
         builder.Services.AddScoped<ILoginRepository, LoginRepository>();

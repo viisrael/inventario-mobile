@@ -54,6 +54,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Camera.MAUI" Version="1.5.1" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
 		<PackageReference Include="CommunityToolkit.MVVM" Version="8.4.0" />
 		<PackageReference Include="Flunt" Version="2.0.5" />
@@ -70,6 +71,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AddProductPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -89,6 +93,7 @@
 		<wizardVersion>v1.7.4</wizardVersion>
 		<projectType>MVVMToolkit</projectType>
 		<framework>EmptyShell</framework>
+		<DefaultLanguage>pt-br</DefaultLanguage>
 	</PropertyGroup>
 
 </Project>

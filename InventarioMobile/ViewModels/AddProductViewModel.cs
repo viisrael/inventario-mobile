@@ -4,12 +4,15 @@ using InventarioMobile.Contracts;
 using InventarioMobile.Models.Request;
 using InventarioMobile.Repositories.Product;
 using System.Text;
+using Camera.MAUI;
 
 namespace InventarioMobile.ViewModels
 {
     public partial class AddProductViewModel: BaseViewModel
     {
         private readonly IProductRepository _repository;
+        public CameraInfo SelectedCamera { get; set; }
+        public ObservableCollection<CameraInfo> Cameras { get; } = new();
 
         [ObservableProperty] string barcode;
         [ObservableProperty] string descricao;
@@ -57,6 +60,17 @@ namespace InventarioMobile.ViewModels
 
             await Shell.Current.GoToAsync("..");
 
+        }
+
+        [RelayCommand]
+        private async Task ActivateCamera()
+        {
+            if (SelectedCamera is not null)
+                await Shell.Current.DisplayAlert("Câmera Selecionado",
+                    $"A câmera que você selecionou foi {SelectedCamera.Name}. Ative-a pressionando o botão da Câmera no app.",
+                    "Ok");
+            else
+                await Shell.Current.DisplayAlert("Atenção", "Selecione uma câmera", "Ok");
         }
     }
 }

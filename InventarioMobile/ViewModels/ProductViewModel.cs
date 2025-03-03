@@ -29,4 +29,7 @@ public partial class ProductViewModel: BaseViewModel
 
         IsBusy = false;
     }
+
+    [RelayCommand]
+    public async Task GotoAddProduct() => await Shell.Current.GoToAsync(nameof(AddProductPage));
 }

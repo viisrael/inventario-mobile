@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="InventarioMobile.Views.AddProductPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+    xmlns:viewModel="clr-namespace:InventarioMobile.ViewModels"
+    Title="Novo Produto"
+    x:DataType="viewModel:AddProductViewModel">
+    <ScrollView>
+        <Grid
+            Padding="20"
+            RowDefinitions="auto, auto, auto, auto, auto, *, auto, auto, auto, auto"
+            RowSpacing="10">
+
+            <Entry Placeholder="Código de Barras" Text="{Binding Barcode}" />
+
+            <Entry
+                Grid.Row="1"
+                Keyboard="Numeric"
+                Placeholder="Estoque"
+                Text="{Binding Estoque}" />
+
+            <Entry
+                Grid.Row="2"
+                Placeholder="Unidade de Medida"
+                Text="{Binding UnidadeMedida}" />
+
+            <Editor
+                Grid.Row="3"
+                Placeholder="Descrição"
+                Text="{Binding Descricao}" />
+
+            <Entry
+                Grid.Row="1"
+                Keyboard="Numeric"
+                Placeholder="Preço"
+                Text="{Binding Preco}" />
+
+            <Picker
+                x:Name="cameraPicker"
+                Title="Selecione a câmera"
+                Grid.Row="6"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Cameras}"
+                SelectedIndexChanged="CameraPicker_OnSelectedIndexChanged"
+                SelectedItem="{Binding SelectedCamera, Mode=TwoWay}" />
+
+            <cv:CameraView
+                x:Name="cameraView"
+                Grid.Row="7"
+                BarCodeDetectionEnabled="True"
+                BarcodeDetected="CameraView_OnBarcodeDetected"
+                CamerasLoaded="CameraView_OnCamerasLoaded"
+                HeightRequest="200" />
+
+            <Button
+                x:Name="activateCamera"
+                Grid.Row="8"
+                Clicked="ActivateCameraButton_Clicked">
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="Segoe UI Emoji"
+                        Glyph="📷"
+                        Size="20" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="9"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding SaveCommand}"
+                FontAttributes="Bold"
+                Text="Salvar"
+                TextColor="White" />
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
