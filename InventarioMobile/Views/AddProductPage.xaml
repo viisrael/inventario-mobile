@@ -32,7 +32,7 @@
                 Text="{Binding Descricao}" />
 
             <Entry
-                Grid.Row="1"
+                Grid.Row="4"
                 Keyboard="Numeric"
                 Placeholder="Preço"
                 Text="{Binding Preco}" />

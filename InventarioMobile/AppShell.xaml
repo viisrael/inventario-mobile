@@ -30,5 +30,15 @@
                 Shell.NavBarIsVisible="true" />
         </Tab>
     </FlyoutItem>
+    
+    <FlyoutItem Title="Controle de Inventário">
+        <Tab>
+            <ShellContent
+                Title="Controle de Inventário"
+                ContentTemplate="{DataTemplate views:EditProductPage}"
+                Route="EditProductsPage"
+                Shell.NavBarIsVisible="true" />
+        </Tab>
+    </FlyoutItem>
 
 </Shell>

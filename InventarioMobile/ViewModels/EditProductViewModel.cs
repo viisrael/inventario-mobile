@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Camera.MAUI;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using InventarioMobile.Contracts;
@@ -8,11 +9,14 @@ using InventarioMobile.Repositories.Product;
 
 namespace InventarioMobile.ViewModels;
 
-[QueryProperty(nameof(Product), nameof(Product))]
+//[QueryProperty(nameof(Product), nameof(Product))]
 public partial class EditProductViewModel: BaseViewModel
 {
     private readonly IProductRepository _productRepository;
-    
+
+    public CameraInfo SelectedCamera { get; set; }
+    public ObservableCollection<CameraInfo> Cameras { get; } = new();
+
     public ProductResponse _product;
     public ProductResponse Product
     {
@@ -27,6 +31,7 @@ public partial class EditProductViewModel: BaseViewModel
                 Descricao = value.Descricao;
                 Estoque = value.Estoque;
                 Preco = value.Preco;
+                Unidade = value.Unidade;
             }
         }
     }
@@ -37,6 +42,7 @@ public partial class EditProductViewModel: BaseViewModel
     [ObservableProperty] private string descricao;
     [ObservableProperty] private int? estoque;
     [ObservableProperty] private double? preco;
+    [ObservableProperty] private string unidade;
 
     public EditProductViewModel(IProductRepository productRepository)
     {
@@ -55,6 +61,7 @@ public partial class EditProductViewModel: BaseViewModel
         Descricao = product.Descricao;
         Estoque = product.Estoque;
         Preco = product.Preco;
+        Unidade = product.Unidade;
     }
     
     [RelayCommand]
@@ -89,5 +96,16 @@ public partial class EditProductViewModel: BaseViewModel
         await totastSucess.Show();
         
         await Shell.Current.GoToAsync($"//{nameof(ProductsPage)}");
+    }
+
+    [RelayCommand]
+    private async Task ActivateCamera()
+    {
+        if (SelectedCamera is not null)
+            await Shell.Current.DisplayAlert("Câmera Selecionado",
+                $"A câmera que você selecionou foi {SelectedCamera.Name}. Ative-a pressionando o botão da Câmera no app.",
+                "Ok");
+        else
+            await Shell.Current.DisplayAlert("Atenção", "Selecione uma câmera", "Ok");
     }
 }

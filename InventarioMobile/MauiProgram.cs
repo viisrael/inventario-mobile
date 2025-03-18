@@ -26,6 +26,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<SignupViewModel>();
 		builder.Services.AddTransient<ProductViewModel>();
 		builder.Services.AddTransient<AddProductViewModel>();
+		builder.Services.AddTransient<EditProductViewModel>();
 
         //-- Views
         builder.Services.AddTransient<MainPage>();
@@ -33,6 +34,7 @@ public static class MauiProgram
         builder.Services.AddTransient<SignupPage>();
         builder.Services.AddTransient<ProductsPage>();
         builder.Services.AddTransient<AddProductPage>();
+        builder.Services.AddTransient<EditProductPage>();
 
         //-- Repositories
         builder.Services.AddScoped<ILoginRepository, LoginRepository>();
