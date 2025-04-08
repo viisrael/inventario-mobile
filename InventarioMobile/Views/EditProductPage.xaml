@@ -5,12 +5,12 @@
              xmlns:viewModels="clr-namespace:InventarioMobile.ViewModels"
              x:DataType="viewModels:EditProductViewModel"
              xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
-             Title="EditProductPage">
+             Title="Controle de Inventário">
     
     <ScrollView>
         <Grid Padding="20" RowDefinitions="auto, auto, auto, auto, auto, *, auto, auto, auto, auto" RowSpacing="10">
 
-            <Entry Placeholder="Código de Barras" Text="{Binding Barcode}"/>
+            <Entry Placeholder="Código de Barras" Text="{Binding Barcode}" Unfocused="Entry_Unfocused"/>
             <Entry Grid.Row="1" Placeholder="Estoque" Text="{Binding Estoque}"/>
             <Entry Grid.Row="2" Placeholder="Unidade" Text="{Binding Unidade}" IsReadOnly="True"/>
             <Entry Grid.Row="3" Placeholder="Descrição" Text="{Binding Descricao}"/>

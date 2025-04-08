@@ -20,12 +20,14 @@ public class ProductRequest
         AtualizadoEm = atualizadoEm;
     }
 
-    public ProductRequest(Guid productId, string descricao, int? estoque, string barcode, double? preco)
+    public ProductRequest(Guid productId, string descricao, int? estoque, string barcode, double? preco, string unidade)
     {
         ProductId = productId;
         Descricao = descricao;
         Estoque = estoque ?? 0;
         Barcode = barcode;
         Preco = preco ?? 0;
+        UnidadeMedida = unidade;
+        AtualizadoEm = DateTime.Now;
     }
 }

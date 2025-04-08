@@ -69,4 +69,12 @@ public partial class EditProductPage : ContentPage
             await Shell.Current.DisplayAlert("Atenção", "Selecione uma câmera", "Ok");
     }
 
+    private void Entry_Unfocused(object sender, FocusEventArgs e)
+    {
+        if(_viewModel.Barcode != null || _viewModel.Barcode.Length > 0){
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await _viewModel.getInfoProductAsync(_viewModel.Barcode);
+            }); }
+    }
 }

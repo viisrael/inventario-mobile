@@ -9,7 +9,7 @@ using InventarioMobile.Repositories.Product;
 
 namespace InventarioMobile.ViewModels;
 
-//[QueryProperty(nameof(Product), nameof(Product))]
+[QueryProperty(nameof(Product), nameof(Product))]
 public partial class EditProductViewModel: BaseViewModel
 {
     private readonly IProductRepository _productRepository;
@@ -18,6 +18,7 @@ public partial class EditProductViewModel: BaseViewModel
     public ObservableCollection<CameraInfo> Cameras { get; } = new();
 
     public ProductResponse _product;
+
     public ProductResponse Product
     {
         get => _product;
@@ -31,7 +32,7 @@ public partial class EditProductViewModel: BaseViewModel
                 Descricao = value.Descricao;
                 Estoque = value.Estoque;
                 Preco = value.Preco;
-                Unidade = value.Unidade;
+                Unidade = value.UnidadeMedida;
             }
         }
     }
@@ -61,13 +62,13 @@ public partial class EditProductViewModel: BaseViewModel
         Descricao = product.Descricao;
         Estoque = product.Estoque;
         Preco = product.Preco;
-        Unidade = product.Unidade;
+        Unidade = product.UnidadeMedida;
     }
     
     [RelayCommand]
     public async Task Save()
     {
-        var request = new ProductRequest(ProductId, Descricao, Estoque, Barcode, Preco);
+        var request = new ProductRequest(ProductId, Descricao, Estoque, Barcode, Preco, Unidade);
         var contract = new ProductContract(request);
 
         if (!contract.IsValid)
@@ -82,7 +83,7 @@ public partial class EditProductViewModel: BaseViewModel
             return;
         }
         
-        var result = await _productRepository.UpdateProduct(request);
+        var result = await _productRepository.UpdateAsync(request);
 
         if (!result)
         {

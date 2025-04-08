@@ -32,4 +32,19 @@ public partial class ProductViewModel: BaseViewModel
 
     [RelayCommand]
     public async Task GotoAddProduct() => await Shell.Current.GoToAsync(nameof(AddProductPage));
+
+    [RelayCommand]
+    public async Task GoToEditCommand(ProductResponse product) {
+
+        if (product is null)
+            return;
+
+        var navigationParams = new Dictionary<string, object>
+        {
+            {"Product", product }
+        };
+
+        await Shell.Current.GoToAsync(nameof(EditProductPage), navigationParams); 
+    
+    }
 }
