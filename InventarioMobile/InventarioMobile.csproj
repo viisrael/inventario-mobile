@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net8.0-ios;net8.0-maccatalyst;net8.0-android34.0</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>InventarioMobile</RootNamespace>
@@ -12,7 +12,7 @@
 		<MauiVersion>8.0.92</MauiVersion>
 
 		<!-- Display name -->
-		<ApplicationTitle>InventarioMobile</ApplicationTitle>
+		<ApplicationTitle>Inventario</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.InventarioMobile</ApplicationId>
@@ -37,7 +37,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.png" ForegroundScale="0.65"/>
+		<MauiIcon Include="Resources\AppIcon\appicon.png" ForegroundScale="0.65" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\icbox.svg" Color="#512BD4" BaseSize="128,128" />
@@ -106,6 +106,12 @@
 		<projectType>MVVMToolkit</projectType>
 		<framework>EmptyShell</framework>
 		<DefaultLanguage>pt-br</DefaultLanguage>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	</PropertyGroup>
 
 </Project>
