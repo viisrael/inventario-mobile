@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using InventarioMobile.Contracts;
+using InventarioMobile.Helpers;
 using InventarioMobile.Models.Request;
 using InventarioMobile.Repositories.Login;
 
@@ -54,7 +55,7 @@ public partial class LoginViewModel: BaseViewModel
             return;
         }
 
-        Preferences.Set("token", result.accessToken);
+        SessionHelper.SaveToken(result.accessToken, DateTime.Now.AddDays(1));
 
         await Shell.Current.GoToAsync($"//{nameof(ProductsPage)}");
     }

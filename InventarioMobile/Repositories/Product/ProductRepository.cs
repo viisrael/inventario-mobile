@@ -11,58 +11,111 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<ProductResponse>> GetProductsAsync()
     {
-        return await Constants.API_URL
-            .AppendPathSegment("/products")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .GetJsonAsync<IEnumerable<ProductResponse>>();
+        try
+        {
+            return await Constants.API_URL
+                .AppendPathSegment("/products")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .GetJsonAsync<IEnumerable<ProductResponse>>();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
 
+        return Enumerable.Empty<ProductResponse>();
     }
 
     public async Task<ProductResponse> GetProductAsync(Guid productId)
     {
-        return await Constants.API_URL
-            .AppendPathSegment($"/products/{productId}")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .GetJsonAsync<ProductResponse>();
+        try
+        {
+            return await Constants.API_URL
+                .AppendPathSegment($"/products/{productId}")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .GetJsonAsync<ProductResponse>();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return new ProductResponse();
     }
 
     public async Task<bool> AddProductAsync(ProductRequest request)
     {
-        var response = await Constants.API_URL
-            .AppendPathSegment("/products")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .PostJsonAsync(request);
+        try
+        {
+            var response = await Constants.API_URL
+                .AppendPathSegment("/products")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .PostJsonAsync(request);
 
-        return response.ResponseMessage.IsSuccessStatusCode;
+            return response.ResponseMessage.IsSuccessStatusCode;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
     }
 
     public async Task<bool> UpdateAsync(ProductRequest request)
     {
-        var response = await Constants.API_URL
-            .AppendPathSegment($"/products/{request.ProductId}")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .PutJsonAsync(request);
+        try
+        {
+            var response = await Constants.API_URL
+                .AppendPathSegment($"/products/{request.ProductId}")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .PutJsonAsync(request);
 
-        return response.ResponseMessage.IsSuccessStatusCode;
+            return response.ResponseMessage.IsSuccessStatusCode;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
     }
 
     public async Task<bool> DeleteProduct(int id)
     {
-        var response = await Constants.API_URL
-            .AppendPathSegment($"/products/{id}")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .DeleteAsync();
+        try
+        {
+            var response = await Constants.API_URL
+                .AppendPathSegment($"/products/{id}")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .DeleteAsync();
 
-        return response.ResponseMessage.IsSuccessStatusCode;
+            return response.ResponseMessage.IsSuccessStatusCode;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
     }
 
     public async Task<ProductResponse> GetProductByBarCodeAsync(string code)
     {
-        var response = await Constants.API_URL
-            .AppendPathSegment($"/products/{code}")
-            .WithOAuthBearerToken(Preferences.Get("token", string.Empty))
-            .GetJsonAsync<ProductResponse>();
+        try
+        {
+            var response = await Constants.API_URL
+                .AppendPathSegment($"/products/{code}")
+                .WithOAuthBearerToken(await SessionHelper.GetTokenAsync())
+                .GetJsonAsync<ProductResponse>();
 
-        return response;
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return new ProductResponse();
     }
 }
